@@ -1,15 +1,13 @@
 import React, { useState, useContext, useEffect } from 'react';
 // make sure to use https
 export const API_ENDPOINT = `https://www.omdbapi.com/?apikey=${process.env.REACT_APP_MOVIE_API_KEY}`;
-console.log(API_ENDPOINT);
-console.log(process.env.REACT_APP_MOVIE_API_KEY);
 const AppContext = React.createContext();
 
 const AppProvider = ({ children }) => {
     const [isLoading, setIsLoading] = useState(true);
     const [error, setError] = useState({ show: false, msg: '' });
     const [movies, setMovies] = useState([]);
-    const [query, setQuery] = useState('hobbit');
+    const [query, setQuery] = useState('sup');
 
     const fetchMovies = async (url) => {
         setIsLoading(true);
@@ -17,7 +15,7 @@ const AppProvider = ({ children }) => {
             const response = await fetch(url);
             const data = await response.json();
             console.log(data);
-            if (data.response === 'True') {
+            if (data.Response === 'True') {
                 setMovies(data.Search);
                 setError({ show: false, msg: '' });
             }
