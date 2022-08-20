@@ -7,7 +7,7 @@ const AppProvider = ({ children }) => {
     const [isLoading, setIsLoading] = useState(true);
     const [error, setError] = useState({ show: false, msg: '' });
     const [movies, setMovies] = useState([]);
-    const [query, setQuery] = useState('sup');
+    const [query, setQuery] = useState('hobbit');
 
     const fetchMovies = async (url) => {
         setIsLoading(true);
@@ -30,7 +30,7 @@ const AppProvider = ({ children }) => {
 
     useEffect(() => {
         fetchMovies(`${API_ENDPOINT}&s=${query}`);
-    }, []);
+    }, [query]);
 
     return <AppContext.Provider
         value={{ isLoading, error, movies, query, setQuery }}>
